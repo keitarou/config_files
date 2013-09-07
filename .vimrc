@@ -53,6 +53,17 @@ nnoremap <C-k> <PageUp>
 nnoremap <C-h> <Left>
 nnoremap <C-l> <Right>
 
+" ウィンドウ移動
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Shift + 矢印でウィンドウサイズを変更
+nnoremap <S-Left>  <C-w><
+nnoremap <S-Right> <C-w>>
+nnoremap <S-Up>    <C-w>-
+nnoremap <S-Down>  <C-w>+
+
+" 方向キー入力での不具合解決
 nnoremap OA gi<Up>
 nnoremap OB gi<Down>
 nnoremap OC gi<Right>
@@ -123,42 +134,43 @@ set hlsearch
 
 
 " 挿入モード時にステータスバーの色変更
-if !exists('g:hi_insert')
-  let g:hi_insert = 'highlight StatusLine guifg=White guibg=DarkCyan gui=none ctermfg=White ctermbg=DarkCyan cterm=none'
-endif
+" lightline.vimを導入したので利用していない
+" if !exists('g:hi_insert')
+  " let g:hi_insert = 'highlight StatusLine guifg=White guibg=DarkCyan gui=none ctermfg=White ctermbg=DarkCyan cterm=none'
+" endif
  
-if has('unix') && !has('gui_running')
-  inoremap <silent> <ESC> <ESC>
-  inoremap <silent> <C-[> <ESC>
-endif
+" if has('unix') && !has('gui_running')
+  " inoremap <silent> <ESC> <ESC>
+  " inoremap <silent> <C-[> <ESC>
+" endif
  
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
+" if has('syntax')
+  " augroup InsertHook
+    " autocmd!
+    " autocmd InsertEnter * call s:StatusLine('Enter')
+    " autocmd InsertLeave * call s:StatusLine('Leave')
+  " augroup END
+" endif
  
-let s:slhlcmd = ''
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-  endif
-endfunction
+" let s:slhlcmd = ''
+" function! s:StatusLine(mode)
+  " if a:mode == 'Enter'
+    " silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    " silent exec g:hi_insert
+  " else
+    " highlight clear StatusLine
+    " silent exec s:slhlcmd
+  " endif
+" endfunction
  
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
+" function! s:GetHighlight(hi)
+  " redir => hl
+  " exec 'highlight '.a:hi
+  " redir END
+  " let hl = substitute(hl, '[\r\n]', '', 'g')
+  " let hl = substitute(hl, 'xxx', '', '')
+  " return hl
+" endfunction
 
 " neobundle
 set nocompatible
@@ -194,6 +206,8 @@ NeoBundle 'thinca/vim-quickrun'   " vim-quickrun
 NeoBundle 'tpope/vim-fugitive'    " git client
 NeoBundle 'The-NERD-Commenter'    " コメント入力プラグイン
 NeoBundle "kien/ctrlp.vim"        " ファイル検索プラグイン
+NeoBundle 'itchyny/lightline.vim' " ステータスバーに色を付けてくれるプラグイン
+
 " プラグインの有効化
 filetype plugin on
 filetype indent on
@@ -266,3 +280,5 @@ let NERDSpaceDelims = 1
 " \ + c でコメント・アンコメント
 nmap <Leader>c <Plug>NERDCommenterToggle
 vmap <Leader>c <Plug>NERDCommenterToggle
+
+

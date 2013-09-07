@@ -1,6 +1,6 @@
 #
 # 
-# Last Up 2013.8.25
+# Last Up 2013.9.7
 
 
 #######################################
@@ -8,6 +8,7 @@
 #######################################
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
+export TERM=xterm-256color
 setopt auto_cd          # cdコマンドなしで移動
 setopt auto_pushd       # 移動したディレクトリを記録
 
