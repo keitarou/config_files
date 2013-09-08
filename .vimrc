@@ -1,5 +1,6 @@
 """""""""""""""""""""""""""
-" 最終更新日 2013.9.7
+" 更新日 2013.9.8   Unite Unite-outlineの追加・設定
+" 更新日 2013.9.7
 """""""""""""""""""""""""""
 
 "エンコーディング関係
@@ -207,6 +208,8 @@ NeoBundle 'tpope/vim-fugitive'    " git client
 NeoBundle 'The-NERD-Commenter'    " コメント入力プラグイン
 NeoBundle "kien/ctrlp.vim"        " ファイル検索プラグイン
 NeoBundle 'itchyny/lightline.vim' " ステータスバーに色を付けてくれるプラグイン
+NeoBundle 'Shougo/unite.vim'      " Unite
+NeoBundle 'h1mesuke/unite-outline' " アウトラインの表示
 
 " プラグインの有効化
 filetype plugin on
@@ -281,4 +284,8 @@ let NERDSpaceDelims = 1
 nmap <Leader>c <Plug>NERDCommenterToggle
 vmap <Leader>c <Plug>NERDCommenterToggle
 
-
+" Unite-Outline
+" Uniteを縦分割時に右表示に
+let g:unite_split_rule = 'botright'
+" \ oでunite-outlineを縦分割でかつ閉じないように表示する
+nnoremap <silent> <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
