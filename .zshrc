@@ -1,6 +1,6 @@
-#
-# 
-# Last Up 2013.9.7
+# Update 2013.9.9   エイリアスの追加（titanium ios 実機ビルド）
+# Update 2013.9.9   エイリアスの追加（iossim起動）
+# Update 2013.9.7
 
 
 #######################################
@@ -113,9 +113,13 @@ alias rm='rm -i'
 # sublime
 alias s="subl"
 
+# ios simulator
+alias simulator="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+
 # Titanium
 alias tii="titanium build -p ios"
 alias tis="tishadow run"
+alias tiiios='titanium build -T device --platform iphone -V "Keitarou Oonishi" -P "675C4128-7335-4ABC-BEB3-C0B2F608A3CB"'
 
 # Bundle
 alias b="bundle"
