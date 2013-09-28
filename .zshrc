@@ -1,3 +1,4 @@
+# Update 2013.9.29  zsh-completionsのパス変更
 # Update 2013.9.29  zsh-syntax-highlightingの読み込み
 # Update 2013.9.9   エイリアスの追加（titanium ios 実機ビルド）
 # Update 2013.9.9   エイリアスの追加（iossim起動）
@@ -33,7 +34,7 @@ setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに�
 # 補完関係
 #######################################
 # zsh-completionsの追加
-fpath=(~/zsh-completions/src $fpath)
+fpath=(~/.zsh/zsh-completions/src $fpath)
 autoload -U compinit; compinit # 補完機能を有効にする
 setopt auto_list               # 補完候補を一覧で表示する(d)
 setopt auto_menu               # 補完キー連打で補完候補を順に表示する(d)
