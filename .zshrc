@@ -1,3 +1,4 @@
+# Update 2013.9.29  zsh-syntax-highlightingの読み込み
 # Update 2013.9.9   エイリアスの追加（titanium ios 実機ビルド）
 # Update 2013.9.9   エイリアスの追加（iossim起動）
 # Update 2013.9.7
@@ -133,6 +134,17 @@ alias sed='gsed'
 #nvm
 source ~/.nvm/nvm.sh
 nvm use "v0.8.22"
+
+
+
+#######################################
+# zsh-syntax-highlightingの読み込み
+#######################################
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+  echo "not find zsh-syntax-highlighting.zsh"
+fi
 
 
 #######################################
