@@ -1,3 +1,4 @@
+# Update 2013.9.29  シークレットファイルの実行追加
 # Update 2013.9.29  パスの追加
 # Update 2013.9.29  zsh-completionsのパス変更
 # Update 2013.9.29  zsh-syntax-highlightingの読み込み
@@ -162,3 +163,9 @@ alias ramen="ramen3"
 #######################################
 export PATH="/Users/keitarou/.original_shells/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
+
+
+#######################################
+# 公開したくない設定の読み込み
+#######################################
+source ~/.zsh_secret
