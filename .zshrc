@@ -1,3 +1,4 @@
+# Update 2013.9.29  パスの追加
 # Update 2013.9.29  zsh-completionsのパス変更
 # Update 2013.9.29  zsh-syntax-highlightingの読み込み
 # Update 2013.9.9   エイリアスの追加（titanium ios 実機ビルド）
@@ -156,5 +157,8 @@ alias ramen4="sleep 240 && terminal-notifier -message "ラーメンできたよ�
 alias ramen5="sleep 300 && terminal-notifier -message "ラーメンできたよ！" && while true; do sleep 1 && say ラーメンできたよ!; done;"
 alias ramen="ramen3"
 
-### Added by the Heroku Toolbelt
+#######################################
+# パスの追加
+#######################################
+export PATH="/Users/keitarou/.original_shells/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
