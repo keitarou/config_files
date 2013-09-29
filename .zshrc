@@ -1,3 +1,4 @@
+# foge
 # Update 2013.9.29  シークレットファイルの実行追加
 # Update 2013.9.29  パスの追加
 # Update 2013.9.29  zsh-completionsのパス変更
