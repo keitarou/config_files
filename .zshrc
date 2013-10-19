@@ -1,4 +1,5 @@
-# foge
+# Update 2013.10.20  Shoes Alias ADD
+# Update 2013.10.1  SublimeTextのパッケージディレクトリの環境変数の作成
 # Update 2013.9.29  シークレットファイルの実行追加
 # Update 2013.9.29  パスの追加
 # Update 2013.9.29  zsh-completionsのパス変更
@@ -139,7 +140,8 @@ alias sed='gsed'
 source ~/.nvm/nvm.sh
 nvm use "v0.8.22"
 
-
+# Ruby
+alias shoes="/Applications/Shoes.app/Contents/MacOS/shoes"
 
 #######################################
 # zsh-syntax-highlightingの読み込み
@@ -150,6 +152,15 @@ else
   echo "not find zsh-syntax-highlighting.zsh"
 fi
 
+#######################################
+# zsh-syntax-highlightingの読み込み
+#######################################
+# if [ -f ~/.zsh/zsh-git-prompt/zshrc.sh ]; then
+  # source ~/.zsh/zsh-git-prompt/zshrc.sh
+  # PROMPT='%B%m%~%b$(git_super_status) %#'
+# else
+  # echo "not find zsh-git-prompt"
+# fi
 
 #######################################
 # ネタ
@@ -165,6 +176,11 @@ alias ramen="ramen3"
 export PATH="/Users/keitarou/.original_shells/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 
+
+#######################################
+# ちょっとした環境変数の追加
+#######################################
+export SUBL_PACKAGES="~/Library/Application Support/Sublime Text 2/Packages"
 
 #######################################
 # 公開したくない設定の読み込み
