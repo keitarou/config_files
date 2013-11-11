@@ -107,7 +107,6 @@ if which pbcopy >/dev/null 2>&1 ; then
 elif which xsel >/dev/null 2>&1 ; then 
     # Linux
     alias -g C='| xsel --input --clipboard'
-    alias ds='dstat -cmsnt 5'
 elif which putclip >/dev/null 2>&1 ; then 
     # Cygwin 
     alias -g C='| putclip'
@@ -144,7 +143,8 @@ source ~/.nvm/nvm.sh
 nvm use "v0.8.22"
 
 
-
+# dstat
+alias ds='dstat -cmsnt 5'
 
 #######################################
 # オリジナルの関数
