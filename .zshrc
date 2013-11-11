@@ -1,3 +1,5 @@
+# Update 2013.11.11  dstat alias
+# Update 2013.10.29  cssminコマンドの作成
 # Update 2013.10.20  Shoes Alias ADD
 # Update 2013.10.1  SublimeTextのパッケージディレクトリの環境変数の作成
 # Update 2013.9.29  シークレットファイルの実行追加
@@ -92,9 +94,20 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 if which pbcopy >/dev/null 2>&1 ; then 
     # Mac  
     alias -g C='| pbcopy'
+    # iOS Sim
+    alias simulator="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
+    # Titanium
+    alias tii="titanium build -p ios"
+    alias tis="tishadow run"
+    alias tiiios='titanium build -T device --platform iphone -V "Keitarou Oonishi" -P "675C4128-7335-4ABC-BEB3-C0B2F608A3CB"'
+    # sublime
+    alias s="subl"
+    # Shoes
+    alias shoes="/Applications/Shoes.app/Contents/MacOS/shoes"
 elif which xsel >/dev/null 2>&1 ; then 
     # Linux
     alias -g C='| xsel --input --clipboard'
+    alias ds='dstat -cmsnt 5'
 elif which putclip >/dev/null 2>&1 ; then 
     # Cygwin 
     alias -g C='| putclip'
@@ -116,16 +129,6 @@ alias gs='git status'
 alias gl='git log'
 alias rm='rm -i'
 
-# sublime
-alias s="subl"
-
-# ios simulator
-alias simulator="open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
-
-# Titanium
-alias tii="titanium build -p ios"
-alias tis="tishadow run"
-alias tiiios='titanium build -T device --platform iphone -V "Keitarou Oonishi" -P "675C4128-7335-4ABC-BEB3-C0B2F608A3CB"'
 
 # Bundle
 alias b="bundle"
@@ -140,8 +143,27 @@ alias sed='gsed'
 source ~/.nvm/nvm.sh
 nvm use "v0.8.22"
 
-# Ruby
-alias shoes="/Applications/Shoes.app/Contents/MacOS/shoes"
+
+
+
+#######################################
+# オリジナルの関数
+#######################################
+cssmin(){
+    css=$1
+    dir=$2
+    min=`echo $css | sed -e 's/\.css/\.min\.css/'`
+    if [ $css == $min ]; then
+        return
+    fi
+    if [ $# -ne 2 ]; then
+        dir='.'
+    fi
+    uglifycss $css > "$dir/$min"
+}
+
+
+
 
 #######################################
 # zsh-syntax-highlightingの読み込み
