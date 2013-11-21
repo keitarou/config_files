@@ -1,4 +1,5 @@
 """""""""""""""""""""""""""
+" 更新日 2013.11.14 MarkDownのプラグイン追加
 " 更新日 2013.9.8   Unite Unite-outlineの追加・設定
 " 更新日 2013.9.7
 """""""""""""""""""""""""""
@@ -109,8 +110,8 @@ augroup END
 " タブ・全角スペースの可視化
 set lcs=tab:>.,trail:_,extends:\
 set list
-highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
-highlight JpSpace cterm=underline ctermfg=7 guifg=7
+"highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
+"highlight JpSpace cterm=underline ctermfg=7 guifg=7
 au BufRead,BufNew * match JpSpace /　/
 
 " タブページの設定
@@ -132,6 +133,10 @@ set smartcase
 set wrapscan
 " 検索文字の強調表示
 set hlsearch
+
+
+
+
 
 
 " 挿入モード時にステータスバーの色変更
@@ -173,6 +178,7 @@ set hlsearch
   " return hl
 " endfunction
 
+" colorscheme wombat
 " neobundle
 set nocompatible
 filetype off
@@ -210,6 +216,8 @@ NeoBundle "kien/ctrlp.vim"        " ファイル検索プラグイン
 NeoBundle 'itchyny/lightline.vim' " ステータスバーに色を付けてくれるプラグイン
 NeoBundle 'Shougo/unite.vim'      " Unite
 NeoBundle 'h1mesuke/unite-outline' " アウトラインの表示
+NeoBundle 'tpope/vim-markdown'    " Markdownのハイライト
+NeoBundle 'tyru/open-browser.vim' " vim-markdownとセットで使う
 
 " プラグインの有効化
 filetype plugin on
@@ -289,3 +297,14 @@ vmap <Leader>c <Plug>NERDCommenterToggle
 let g:unite_split_rule = 'botright'
 " \ oでunite-outlineを縦分割でかつ閉じないように表示する
 nnoremap <silent> <Leader>o :<C-u>Unite -vertical -winwidth=30 -no-quit outline<CR>
+
+
+" -------------------- QuickRun ----------------------------- "
+let g:quickrun_config = {}
+let g:quickrun_config.markdown = {
+\ 'outputter' : 'null',
+\ 'command'   : 'open',
+\ 'cmdopt'    : '-a',
+\ 'args'      : 'Marked',
+\ 'exec'      : '%c %o %a %s',
+\ }

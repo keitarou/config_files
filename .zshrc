@@ -1,3 +1,4 @@
+# Update 2013.11.20  mvim  alias
 # Update 2013.11.11  dstat alias
 # Update 2013.10.29  cssminコマンドの作成
 # Update 2013.10.20  Shoes Alias ADD
@@ -142,6 +143,10 @@ alias sed='gsed'
 source ~/.nvm/nvm.sh
 nvm use "v0.8.22"
 
+#MacVim
+alias mvim="mvim --remote-tab-silent"
+alias gvim="mvim --remote-tab-silent"
+alias vimm="mvim --remote-tab-silent"
 
 # dstat
 alias ds='dstat -cmsnt 5'
