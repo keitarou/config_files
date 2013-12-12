@@ -1,3 +1,4 @@
+# Update 2013.11.22  android-tools path add
 # Update 2013.11.20  mvim  alias
 # Update 2013.11.11  dstat alias
 # Update 2013.10.29  cssminコマンドの作成
@@ -55,11 +56,46 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小�
 #######################################
 # Prompt
 #######################################
-autoload colors
-colors
-PROMPT="[${USER}@${HOST%%.*}] > "
-RPROMPT=$GREEN'[%~]'$WHITE
-setopt transient_rprompt
+# autoload colors
+# colors
+# PROMPT="[${USER}@${HOST%%.*}] > "
+# RPROMPT=$GREEN'[%~]'$WHITE
+# setopt transient_rprompt
+
+
+
+# ${fg[...]} や $reset_color をロード
+autoload -U colors; colors
+
+function rprompt-git-current-branch {
+        local name st color
+
+        if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+                return
+        fi
+        name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+        if [[ -z $name ]]; then
+                return
+        fi
+        st=`git status 2> /dev/null`
+        if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+                color=${fg[green]}
+        elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+                color=${fg[yellow]}
+        elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+                color=${fg_bold[red]}
+        else
+                color=${fg[red]}
+        fi
+
+        # %{...%} は囲まれた文字列がエスケープシーケンスであることを明示する
+        # これをしないと右プロンプトの位置がずれる
+        echo "%{$color%}$name%{$reset_color%} "
+}
+
+# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
+setopt prompt_subst
+RPROMPT='[`rprompt-git-current-branch`%~]'
 
 #######################################
 # ターミナルのタイトルを変更
@@ -202,6 +238,8 @@ alias ramen="ramen3"
 #######################################
 export PATH="/Users/keitarou/.original_shells/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/Applications/android-sdk/tools:$PATH"
+export PATH="/Applications/android-sdk/platform-tools:$PATH"
 
 
 #######################################
