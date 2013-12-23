@@ -1,4 +1,5 @@
 """""""""""""""""""""""""""
+" 更新日 2013.12.24 Alignを追加
 " 更新日 2013.11.14 MarkDownのプラグイン追加
 " 更新日 2013.9.8   Unite Unite-outlineの追加・設定
 " 更新日 2013.9.7
@@ -110,8 +111,8 @@ augroup END
 " タブ・全角スペースの可視化
 set lcs=tab:>.,trail:_,extends:\
 set list
-"highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
-"highlight JpSpace cterm=underline ctermfg=7 guifg=7
+" highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
+" highlight JpSpace cterm=underline ctermfg=7 guifg=7
 au BufRead,BufNew * match JpSpace /　/
 
 " タブページの設定
@@ -204,20 +205,21 @@ NeoBundle 'Shougo/vimproc', {
 \ 'unix': 'make -f make_unix.mak',
 \ }
 \}
-NeoBundle 'tpope/vim-rails'       " railsプラグイン
-NeoBundle 'git://github.com/scrooloose/syntastic.git'     "シンタックスチェック
-NeoBundle 'tpope/vim-surround'    " 文字を囲える
-NeoBundle 'git://github.com/miripiruni/csscomb-for-vim.git' "CSSプロパティの順序整形プラグイン-CSScomb-
-NeoBundle 'Lokaltog/vim-easymotion'      " 移動用プラグイン
-NeoBundle 'thinca/vim-quickrun'   " vim-quickrun
-NeoBundle 'tpope/vim-fugitive'    " git client
-NeoBundle 'The-NERD-Commenter'    " コメント入力プラグイン
-NeoBundle "kien/ctrlp.vim"        " ファイル検索プラグイン
-NeoBundle 'itchyny/lightline.vim' " ステータスバーに色を付けてくれるプラグイン
-NeoBundle 'Shougo/unite.vim'      " Unite
-NeoBundle 'h1mesuke/unite-outline' " アウトラインの表示
-NeoBundle 'tpope/vim-markdown'    " Markdownのハイライト
-NeoBundle 'tyru/open-browser.vim' " vim-markdownとセットで使う
+NeoBundle 'tpope/vim-rails'                                 " railsプラグイン
+NeoBundle 'git://github.com/scrooloose/syntastic.git'       " シンタックスチェック
+NeoBundle 'tpope/vim-surround'                              " 文字を囲える
+NeoBundle 'git://github.com/miripiruni/csscomb-for-vim.git' " CSSプロパティの順序整形プラグイン-CSScomb-
+NeoBundle 'Lokaltog/vim-easymotion'                         " 移動用プラグイン
+NeoBundle 'thinca/vim-quickrun'                             " vim-quickrun
+NeoBundle 'tpope/vim-fugitive'                              " git client
+NeoBundle 'The-NERD-Commenter'                              " コメント入力プラグイン
+NeoBundle 'kien/ctrlp.vim'                                  " ファイル検索プラグイン
+NeoBundle 'itchyny/lightline.vim'                           " ステータスバーに色を付けてくれるプラグイン
+NeoBundle 'Shougo/unite.vim'                                " Unite
+NeoBundle 'h1mesuke/unite-outline'                          " アウトラインの表示
+NeoBundle 'tpope/vim-markdown'                              " Markdownのハイライト
+NeoBundle 'tyru/open-browser.vim'                           " vim-markdownとセットで使う
+NeoBundle 'Align'                                           " 縦方向に整形するプラグイン
 
 " プラグインの有効化
 filetype plugin on
