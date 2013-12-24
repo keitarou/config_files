@@ -1,4 +1,5 @@
 """""""""""""""""""""""""""
+" 更新日 2013.12.25 xヤンクしないようにする
 " 更新日 2013.12.24 Alignを追加
 " 更新日 2013.11.14 MarkDownのプラグイン追加
 " 更新日 2013.9.8   Unite Unite-outlineの追加・設定
@@ -49,6 +50,11 @@ set shiftwidth=4
 set clipboard=unnamed,autoselect
 " Ruby
 au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 expandtab
+
+" xヤンクしない
+nnoremap x "_x
+nnoremap X "_X
+
 
 " ノーマルモードでのキーマップ
 nnoremap <C-j> <PageDown>
