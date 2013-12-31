@@ -1,11 +1,17 @@
 """""""""""""""""""""""""""
+" 更新日 2014.1.1 Unite-rails add
+" 更新日 2014.1.1 Doxygentoolkit add
+" 更新日 2014.1.1 unite.vim key map
+" 更新日 2014.1.1 capture.vim add
+" 更新日 2013.12.25 neosnippet変更
+" 更新日 2013.12.25 補完候補の色変更
+" 更新日 2013.12.25 error なおした
 " 更新日 2013.12.25 xヤンクしないようにする
 " 更新日 2013.12.24 Alignを追加
 " 更新日 2013.11.14 MarkDownのプラグイン追加
 " 更新日 2013.9.8   Unite Unite-outlineの追加・設定
 " 更新日 2013.9.7
 """""""""""""""""""""""""""
-
 "エンコーディング関係
 set encoding=utf-8
 set termencoding=utf-8
@@ -55,6 +61,10 @@ au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 expandtab
 nnoremap x "_x
 nnoremap X "_X
 
+" 補完候補の色づけ for vim7
+highlight Pmenu ctermbg=8
+highlight PmenuSel ctermbg=20
+highlight PMenuSbar ctermbg=8
 
 " ノーマルモードでのキーマップ
 nnoremap <C-j> <PageDown>
@@ -119,7 +129,7 @@ set lcs=tab:>.,trail:_,extends:\
 set list
 " highlight SpecialKey cterm=NONE ctermfg=7 guifg=7
 " highlight JpSpace cterm=underline ctermfg=7 guifg=7
-au BufRead,BufNew * match JpSpace /　/
+" au BufRead,BufNew * match JpSpace /　/
 
 " タブページの設定
 set showtabline=2 " 常にタブラインを表示
@@ -196,22 +206,14 @@ if has('vim_starting')
 endif
 
 " install plugins 
-NeoBundle 'Shougo/neobundle.vim'  " NeoBundle (書く必要あるのか？？)
-NeoBundle 'tpope/vim-endwise.git' " 自動でendとか挿入する
-NeoBundle 'scrooloose/nerdtree'   " ファイルツリーの表示
-NeoBundle 'Shougo/neocomplcache'  " 入力補完プラグイン
-NeoBundle 'Shougo/neosnippet'     " スニペット
-NeoBundle 'Shougo/vimshell'       " vimでのシェル実行
-" 非同期処理実行ライブラリ（vimshellで使う）
-NeoBundle 'Shougo/vimproc', {
-\ 'build': {
-\ 'windows': 'make -f make_mingw32.mak',
-\ 'cygwin': 'make -f make_cygwin.mak',
-\ 'mac': 'make -f make_mac.mak',
-\ 'unix': 'make -f make_unix.mak',
-\ }
-\}
+NeoBundle 'Shougo/unite.vim'                                " Unite
+NeoBundle 'Shougo/neobundle.vim'                            " NeoBundle (書く必要あるのか？？)
+NeoBundle 'tpope/vim-endwise.git'                           " 自動でendとか挿入する
+NeoBundle 'scrooloose/nerdtree'                             " ファイルツリーの表示
+NeoBundle 'Shougo/neocomplcache'                            " 入力補完プラグイン
+NeoBundle 'Shougo/neosnippet'                               " スニペット
 NeoBundle 'tpope/vim-rails'                                 " railsプラグイン
+NeoBundle 'basyura/unite-rails'                             " railsプラグインその２
 NeoBundle 'git://github.com/scrooloose/syntastic.git'       " シンタックスチェック
 NeoBundle 'tpope/vim-surround'                              " 文字を囲える
 NeoBundle 'git://github.com/miripiruni/csscomb-for-vim.git' " CSSプロパティの順序整形プラグイン-CSScomb-
@@ -221,11 +223,24 @@ NeoBundle 'tpope/vim-fugitive'                              " git client
 NeoBundle 'The-NERD-Commenter'                              " コメント入力プラグイン
 NeoBundle 'kien/ctrlp.vim'                                  " ファイル検索プラグイン
 NeoBundle 'itchyny/lightline.vim'                           " ステータスバーに色を付けてくれるプラグイン
-NeoBundle 'Shougo/unite.vim'                                " Unite
 NeoBundle 'h1mesuke/unite-outline'                          " アウトラインの表示
 NeoBundle 'tpope/vim-markdown'                              " Markdownのハイライト
 NeoBundle 'tyru/open-browser.vim'                           " vim-markdownとセットで使う
 NeoBundle 'Align'                                           " 縦方向に整形するプラグイン
+NeoBundle 'tyru/capture.vim'                                " コマンド結果を新規バッファへ出力するプラグイン
+NeoBundle 'LeafCage/yankround.vim'                          " レジスタ管理のプラグイン
+NeoBundle 'mrtazz/DoxygenToolkit.vim'                       " C C++ python のコメント生成プラグイン
+
+NeoBundle 'Shougo/vimshell'                                 " vimでのシェル実行
+" 非同期処理実行ライブラリ（vimshellで使う）
+NeoBundle 'Shougo/vimproc', {
+\ 'build': {
+\ 'windows': 'make -f make_mingw32.mak',
+\ 'cygwin': 'make -f make_cygwin.mak',
+\ 'mac': 'make -f make_mac.mak',
+\ 'unix': 'make -f make_unix.mak',
+\ }
+\}
 
 " プラグインの有効化
 filetype plugin on
@@ -235,6 +250,20 @@ filetype indent on
 " zencodingの設定。zencodingはNeobundlerではいれていないので注意
 let g:user_zen_expandabbr_key='<C-e>'
 
+
+" Unite のキーマップ
+" バッファ一覧
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" ファイル一覧
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ一覧
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル一覧
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" 常用セット
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" アウトラインの表示
+nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 
 " NendTreeの設定
 " 引数なしで実行したとき、NERDTreeを実行する
@@ -280,6 +309,18 @@ let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
+" neosnippet
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 " easy-motionの設定
 " ホームポジションに近いキーを使う
@@ -316,3 +357,12 @@ let g:quickrun_config.markdown = {
 \ 'args'      : 'Marked',
 \ 'exec'      : '%c %o %a %s',
 \ }
+
+
+" yankround
+nmap p     <Plug>(yankround-p)
+nmap P     <Plug>(yankround-P)
+nmap gp    <Plug>(yankround-gp)
+nmap gP    <Plug>(yankround-gP)
+nmap <C-m> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
